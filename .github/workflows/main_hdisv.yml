@@ -28,7 +28,13 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r req.txt
+        run: |
+          pip install -r req.txt
+          git clone https://github.com/davisking/dlib.git
+          cd dlib
+          mkdir build; cd build; cmake ..; cmake --build .
+          cd ..
+          python3 setup.py install
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
